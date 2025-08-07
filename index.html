@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sorteador de IDs por Recarga</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <!-- overlay de login -->
+  <div id="login-overlay" class="login-overlay">
+    <div class="login-box">
+      <img src="img/logo.png" alt="Logo da agência" class="logo-login" />
+      <h2>Entrar</h2>
+      <p>Informe a senha para acessar o painel</p>
+      <input type="password" id="senha-input" placeholder="Senha" />
+      <div class="login-actions">
+        <button id="btn-login" class="btn-primary">Entrar</button>
+      </div>
+      <div class="error" id="erro-login" style="display:none;"></div>
+    </div>
+  </div>
+
+  <div class="wrapper" id="app" aria-hidden="true">
+    <header class="header">
+      <div class="logo-area">
+        <img src="img/logo.png" alt="Logo da agência" class="logo-login" />
+        <div>
+          <h1>Sorteador de IDs por Recarga</h1>
+          <p class="sub"> Recargas ≥20k coins - sorteio por intervalo de datas.</p>
+        </div>
+      </div>
+    </header>
+
+    <section class="card">
+      <div class="section-title">1. Cadastrar compra</div>
+      <div class="form-grid">
+        <div class="field">
+          <label for="usuario">ID do usuário </label>
+          <input type="text" id="usuario" placeholder= "Ex: 12345678" />
+        </div>
+        <div class="field">
+          <label for="coins">Coins comprados</label>
+          <input type="number" id="coins" placeholder="Ex: 20000" min="0" />
+        </div>
+        <div class="field">
+          <label for="dataCompra">Data da compra</label>
+          <input type="date" id="dataCompra" />
+        </div>
+      </div>
+      <div class="actions">
+        <button id="btn-add" class="btn-primary">Cadastrar compra</button>
+        <div class="note">Só será aceito se coins ≥ 20000 </div>
+      </div>
+      <div class="error" id="erro-cadastro" style="display:none;"></div>
+    </section>
+
+    <section class="card">
+      <div class="section-title">2. Filtro / sorteio</div>
+      <div class="form-grid">
+        <div class="field">
+          <label for="deFiltro">De (data)</label>
+          <input type="date" id="deFiltro" />
+        </div>
+        <div class="field">
+          <label for="ateFiltro">Até (data)</label>
+          <input type="date" id="ateFiltro" />
+        </div>
+        <div class="sorteio-box">
+          <button id="btn-sorteio-1">Sortear 1º Lugar</button>
+          <button id="btn-sorteio-2">Sortear 2º Lugar</button>
+          <button id="btn-sorteio-3">Sortear 3º Lugar</button>
+        </div>
+        <div style="text-align: center; margin-top: 10px;">
+          <button id="btn-limpar-filtro" class="btn-secondary">Limpar filtro</button>
+        </div>
+      </div>
+      <div class="resultado-box">
+        <div>
+          <strong>Total de entradas válidas:</strong> <span id="total-chances" class="badge">0</span>
+        </div>
+        <div class="ganhador" id="ganhador-area">
+          <strong>Ganhador:</strong> <span id="ganhador-text">Nenhum sorteio feito.</span>
+          <button id="btn-copiar-ganhador" class="small-btn" disabled>Copiar</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="section-title">3. Lista de compras / chances</div>
+      <div class="table-wrapper">
+        <table id="tabela">
+          <thead>
+            <tr>
+              <th>Data</th>
+              <th>ID do usuário</th>
+              <th>Coins</th>
+              <th>Qualifica?</th>
+              <th>Entradas (chances)</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- preenchido por JS -->
+          </tbody>
+        </table>
+      </div>
+      <div class="export-row">
+        <button id="btn-exportar-csv" class="btn-primary">Exportar todas as entradas (CSV)</button>
+        <button id="btn-limpar-tudo" class="btn-secondary">Limpar tudo</button>
+      </div>
+    </section>
+
+    <footer>
+      <small>Persistência local: os dados ficam no navegador. Apagar histórico limpa tudo.</small>
+    </footer>
+  </div>
+
+  <script src="app.js" defer></script>
+</body>
+
+</html>
